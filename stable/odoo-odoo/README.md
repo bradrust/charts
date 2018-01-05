@@ -1,3 +1,17 @@
+#
+
+btp notes...
+
+helm package odoo-odoo
+cp odoo-odoo.tar.gz ~/.helm/starters/
+
+helm install stable/odoo --name odoo-oj-stage --set image=gcr.io/feed-doctor/odoo-oj:0.0.3,serviceType=ClusterIP
+helm delete --purge odoo-oj-stage
+helm upgrade odoo-oj-stage stable/odoo --set image=gcr.io/feed-doctor/odoo-oj:0.0.4 --recreate-pods
+helm rollback odoo-oj-stage 1
+
+
+
 # Odoo
 
 [Odoo](https://www.odoo.com/) is a suite of web based open source business apps. The main Odoo Apps include an Open Source CRM, Website Builder, eCommerce, Project Management, Billing & Accounting, Point of Sale, Human Resources, Marketing, Manufacturing, Purchase Management, ...
